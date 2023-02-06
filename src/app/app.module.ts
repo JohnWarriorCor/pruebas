@@ -5,6 +5,7 @@ import { AppRouting } from "./app.routing";
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRouting
+    AppRouting,
+    QRCodeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

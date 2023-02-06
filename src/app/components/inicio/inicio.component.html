@@ -1,12 +1,27 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col">
-      <div class="jumbotron">
-        <h1 class="display-4">Title</h1>
-        <p class="lead">Subtitle</p>
-        <hr class="my-4" />
-        <p>Content</p>
-      </div>
-    </div>
-  </div>
+<div class="jumbotron mt-5">
+  <h1 class="display-4">Hello, world!</h1>
+  <p class="lead">
+    This is a simple hero unit, a simple jumbotron-style component for calling
+    extra attention to featured content or information.
+  </p>
+  <hr class="my-4" />
+  <p>
+    It uses utility classes for typography and spacing to space content out
+    within the larger container.
+  </p>
+  <qrcode
+    [qrdata]="qrCodeOne"
+    [width]="256"
+    colorLight="#ffffff"
+    colorDark="#1E262B"
+    [errorCorrectionLevel]="'M'"
+  ></qrcode>
+  <qrcode
+    [qrdata]="qrCodeTwo"
+    [width]="256"
+    colorLight="#ffffff"
+    colorDark="#1E262B"
+    [errorCorrectionLevel]="'M'"
+  ></qrcode>
+  <a class="btn btn-primary btn-lg mt-2" href="#" role="button">Learn more</a>
 </div>
