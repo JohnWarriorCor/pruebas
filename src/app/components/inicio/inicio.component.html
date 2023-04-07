@@ -1,27 +1,55 @@
+<header>
+  <mat-form-field appearance="fill">
+    <select matNativeControl matInput (change)="onDeviceSelectChange($event.target.value)">
+      <option value="" [selected]="!currentDevice">No Device Selected</option>
+      <option *ngFor="let device of availableDevices" [value]="device.deviceId"
+        [selected]="currentDevice && device.deviceId === currentDevice.deviceId">{{device.label}}</option>
+    </select>
+  </mat-form-field>
+</header>
 <div class="jumbotron mt-5">
-  <h1 class="display-4">Hello, world!</h1>
-  <p class="lead">
-    This is a simple hero unit, a simple jumbotron-style component for calling
-    extra attention to featured content or information.
-  </p>
-  <hr class="my-4" />
-  <p>
-    It uses utility classes for typography and spacing to space content out
-    within the larger container.
-  </p>
-  <qrcode
-    [qrdata]="qrCodeOne"
-    [width]="256"
-    colorLight="#ffffff"
-    colorDark="#1E262B"
-    [errorCorrectionLevel]="'M'"
-  ></qrcode>
-  <qrcode
-    [qrdata]="qrCodeTwo"
-    [width]="256"
-    colorLight="#ffffff"
-    colorDark="#1E262B"
-    [errorCorrectionLevel]="'M'"
-  ></qrcode>
-  <a class="btn btn-primary btn-lg mt-2" href="#" role="button">Learn more</a>
+  <div class="row">
+    <div class="col">
+      <zxing-scanner [torch]="torchEnabled" [(device)]="currentDevice" (scanSuccess)="onCodeResult($event)"
+      [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
+      (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
+  
+    <section class="results" *ngIf="qrResultString">
+      <div>
+        <small>Result</small>
+        <strong>{{ qrResultString }}</strong>
+      </div>
+      <button mat-icon-button (click)="clearResult()">&times;</button>
+    </section>
+    </div>
+    <div class="col">
+      <h1 class="display-4">{{titulo}}</h1>
+      <p class="lead">
+        This is a simple hero unit, a simple jumbotron-style component for
+        calling extra attention to featured content or information.
+      </p>
+      <hr class="my-4" />
+      <p>
+        It uses utility classes for typography and spacing to space content out
+        within the larger container.
+      </p>
+      <qrcode
+        [qrdata]="qrCodeOne"
+        [width]="256"
+        colorLight="#ffffff"
+        colorDark="#1E262B"
+        [errorCorrectionLevel]="'M'"
+      ></qrcode>
+      <qrcode
+        [qrdata]="qrCodeTwo"
+        [width]="256"
+        colorLight="#ffffff"
+        colorDark="#1E262B"
+        [errorCorrectionLevel]="'M'"
+      ></qrcode>
+      <a class="btn btn-primary btn-lg mt-2" href="#" role="button"
+        >Learn more</a
+      >
+    </div>
+  </div>
 </div>
